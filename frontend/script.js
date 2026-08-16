@@ -73,15 +73,17 @@ async function generateStory() {
   const statusTimer = cycleStatusMessages();
 
   try {
-    const res = await fetch('/api/generate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        prompt,
-        genre: state.genre,
-        length: state.length,
-      }),
-    });
+    const API_BASE = 'https://what-if-story-generator.onrender.com'; 
+
+    const res = await fetch(`${API_BASE}/api/generate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prompt,
+          genre: state.genre,
+          length: state.length,
+        }),
+      });
 
     const data = await res.json();
 
